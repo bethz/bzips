@@ -10,6 +10,8 @@ Ongoing relationship management is the default. Preparing for a possible job cha
 
 ## What is planned
 
+Planned capabilities include **career and project arcs, two-phase ingestion, natural-language querying, and recovery logging**. In practice, that means tracing how your work and relationships developed, capturing one week for review before backfilling your chosen years of history, asking questions about people and projects, and recording progress so interrupted ingestion can resume from verified checkpoints.
+
 | Capability | Purpose |
 |---|---|
 | Capture and maintain | Build linked people, organization, project, meeting, and interaction records from accessible evidence |
