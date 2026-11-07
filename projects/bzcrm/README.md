@@ -1,16 +1,23 @@
 # bzCRM
 
-**Status: Coming soon. Design documented; no implemented or tested skill is published yet.**
+**Status: Coming soon. The design document is available. No working or tested skill is available yet.**
 
-bzCRM is a planned personal relationship and project knowledge base, modeled on BZCOWCRM. It will preserve your professional network and the context behind it: who people are, how you know them, what you worked on together, what each person contributed, and what needs follow-up.
+bzCRM is a planned personal relationship and project knowledge base, modeled on BZCOWCRM. It will record your professional network and the context behind each relationship:
 
-It will also create **career arcs** and **project arcs** from dated, source-supported evidence. Career arcs will trace how your roles, skills, collaborations, and contributions developed over time. Project arcs will trace initiatives through their origins, milestones, pivots, and outcomes.
+- Who each person is and how you know them.
+- Which projects you worked on together.
+- What each person contributed.
+- Which explicit follow-ups remain open.
+
+It will also create **career arcs** and **project arcs** from dated evidence with source references. Career arcs will trace how your roles, skills, collaborations, and contributions developed over time. Project arcs will trace initiatives through their origins, milestones, pivots, and outcomes.
 
 Ongoing relationship management is the default. Preparing for a possible job change will be an optional workflow, not the only purpose.
 
-## What is planned
+## Planned capabilities
 
-Planned capabilities include **career and project arcs, three-phase ingestion and maintenance, natural-language querying, and recovery logging**. In practice, that means tracing how your work and relationships developed, reviewing a seven-day email pilot before historical backfill, maintaining new activity weekly, asking questions about people and projects, and recording progress so interrupted ingestion can resume from verified checkpoints.
+Planned capabilities include **career and project arcs, three-phase ingestion and maintenance, natural-language querying, and recovery logging**.
+
+Ingestion means reading accessible source information and saving linked evidence in your vault. You will review a seven-day email pilot before historical backfill. You can then request weekly updates and ask questions about people and projects. Recovery logging will record saved progress so interrupted ingestion can resume from verified checkpoints.
 
 | Capability | Purpose |
 |---|---|
@@ -24,7 +31,7 @@ Answers and arcs will cite supporting notes, separate facts from interpretation,
 
 ## Your Starter Knowledge Graph Vault
 
-Your CRM will live in an **Obsidian Starter Knowledge Graph Vault**, or an existing compatible vault. Markdown notes, properties, and Obsidian links will remain the source of truth.
+Your CRM will live in an **Obsidian Starter Knowledge Graph Vault**, or an existing compatible vault. The knowledge graph consists of linked notes about people, organizations, projects, and interactions. Markdown notes, properties, and Obsidian links will remain the source of truth.
 
 The structure will include people, organizations, workstreams, meetings, interactions, dashboards, templates, and supporting attachments. A rebuildable local query index will support retrieval without replacing the Markdown vault.
 
@@ -34,15 +41,24 @@ The shared project will provide the skill, prompts, templates, and fictional exa
 
 The intended users already have **Microsoft Work IQ** configured.
 
-Before starting, bzCRM will confirm your mailbox and accessible sources, timezone, vault destination, and whether to include personal contacts or professional contacts only. Sent and received Outlook email is the default source; Teams and other sources will be included only when explicitly within your confirmed scope and accessible.
+Before ingestion, bzCRM will ask you to confirm:
 
-1. **One-week pilot:** process only the last seven complete days of sent and received email, stating exact dates first. Create linked notes, a home page, and a review dashboard. Save the review and checkpoint, then **stop for your corrections and explicit approval**.
-2. **Historical backfill:** after approval, ask for your desired history range and confirm the exact dates. Work backward one calendar month at a time, splitting into weeks when volume or retrieval limits require it.
-3. **Weekly maintenance:** after backfill, process new activity when you invoke the workflow. Report new people, changed details, project associations, explicit follow-ups, and unresolved questions. Do not send messages or create schedules unless you request them.
+- Your mailbox and accessible sources.
+- Your timezone.
+- Where to save the vault.
+- Whether to include personal contacts or professional contacts only.
 
-Every batch will be logged before retrieval starts and checkpointed after saved notes are verified. Logs will record source coverage, partial results, errors, note links, and the next unprocessed window. Recovery will reconcile unfinished batches with saved notes, deduplicate messages and interactions, and preserve your corrections. Older evidence will not overwrite newer current information.
+Sent and received Outlook email is the default source. bzCRM will include Teams or other sources only when you explicitly include them and access is available.
 
-Access, retention, and retrieval limits may leave gaps. A window will be marked complete only when retrieval coverage supports it; otherwise it will remain partial or blocked with an explanation of what remains. Selected search results will never be presented as proof that every message or contact was retrieved.
+1. **One-week pilot:** bzCRM will state exact dates first. It will process only the last seven complete days of sent and received email. It will create linked notes, a home page, and a review dashboard. It will save the review and checkpoint. It will then **stop for your corrections and explicit approval**.
+2. **Historical backfill:** after approval, bzCRM will ask for your desired history range. It will ask you to confirm the exact dates. It will work backward one calendar month at a time. It will split months into weeks when volume or retrieval limits require it.
+3. **Weekly maintenance:** after backfill, bzCRM will process new activity when you request it. It will report new people, changed details, project associations, explicit follow-ups, and unresolved questions. It will not send messages or create schedules unless you request them.
+
+bzCRM will log each batch before retrieval starts. It will save a checkpoint after it verifies the saved notes. The checkpoint will record progress and the next unprocessed window.
+
+Logs will record source coverage, partial results, errors, and note links. During recovery, bzCRM will compare unfinished batches with saved notes. It will prevent duplicate messages and interactions and preserve your corrections. Older evidence will not overwrite newer current information.
+
+Access, retention, and retrieval limits may leave gaps. bzCRM will mark a window complete only when retrieval coverage supports it. Otherwise, it will mark the window partial or blocked and explain what remains. Selected search results do not prove that retrieval included every message or contact.
 
 ## Example requests
 
@@ -57,17 +73,22 @@ These describe planned workflows, not commands for an already available skill:
 
 ## Delivery and requirements
 
-The planned package includes an installable skill, a Starter Knowledge Graph Vault, copy-ready starter and follow-up prompts, setup instructions, templates, fictional examples, and known limitations.
+The planned package includes:
 
-GitHub Copilot CLI with Work IQ and local vault access is the recommended first host. Installation details and compatibility remain to be confirmed. Other assistants will be supported only after their connector and file-access capabilities are verified.
+- An installable skill and a Starter Knowledge Graph Vault.
+- Copy-ready starter and follow-up prompts.
+- Setup instructions and templates.
+- Fictional examples and known limitations.
+
+GitHub Copilot CLI with Work IQ and local vault access is the recommended first host. Maintainers must still confirm installation details and compatibility. Maintainers will add support for other assistants only after they verify connector and file-access capabilities.
 
 CSV and vCard exports are optional proposed outputs. Any capture or export must contain only information you are authorized to retain.
 
 ## Design and contributions
 
-Read the full [bzCRM design and requirements](DESIGN.md) for the capture fields, source-quality rules, logging and recovery requirements, query behavior, and open implementation decisions.
+Read the [bzCRM design and requirements](DESIGN.md) for capture fields, source-quality rules, logging, recovery, queries, and open implementation decisions.
 
-See the [step-by-step roadmap](ROADMAP.md) for the files to create, implementation order, and release checks.
+See the [step-by-step roadmap](ROADMAP.md) for the required files, implementation order, and release criteria.
 
 Feedback and pull requests are welcome. See the [BZiPS contribution guide](../../CONTRIBUTING.md). The project uses the [MIT license](../../LICENSE).
 

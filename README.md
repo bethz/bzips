@@ -2,7 +2,7 @@
 
 Practical prompts and reusable AI workflows.
 
-BZiPS is a public library of prompts, skills, templates, and guides. Each project has its own folder, with clear prerequisites and examples so you can adapt it to your tools.
+BZiPS is a public library of prompts, skills, templates, and guides. Each project has its own folder. Project instructions explain the required tools and provide examples.
 
 **Website:** https://bethz.github.io/bzips/
 
@@ -12,7 +12,7 @@ BZiPS is a public library of prompts, skills, templates, and guides. Each projec
 |---|---|---|
 | [bzCRM](projects/bzcrm/) | Professional relationships, contacts, and collaboration context | Coming soon |
 
-The repository and website foundation are ready. No prompts or skills have been published yet.
+The repository and website foundation are ready. The repository contains project plans, but no working skills or released prompt packages yet.
 
 ## What each project will include
 
@@ -20,9 +20,9 @@ The repository and website foundation are ready. No prompts or skills have been 
 - Copy-ready starter and follow-up prompts.
 - Templates and fictional example inputs and outputs.
 - Known limitations, version history, and draft/tested labels.
-- Last-tested date and the tool/version used when testing has occurred.
+- The last-tested date and tool version for tested content.
 
-Each project lives under `projects/<project-name>/`. Project content is maintained there; its website page lives under `docs/projects/<project-name>/`.
+Maintainers keep project content under `projects/<project-name>/`. Each project's website page lives under `docs/projects/<project-name>/`.
 
 ## Browse, use, and contribute
 
@@ -32,7 +32,7 @@ Use fictional or appropriately sanitized examples. Do not submit real contact re
 
 ## Website
 
-The site is plain HTML, CSS, and JavaScript in `docs/`, published by GitHub Pages through [the deployment workflow](.github/workflows/pages.yml). There is no package installation or build step.
+The site uses plain HTML, CSS, and JavaScript in `docs/`. GitHub Pages publishes these files through [the deployment workflow](.github/workflows/pages.yml). There is no package installation or build step.
 
 To preview locally:
 
@@ -44,4 +44,4 @@ Open http://localhost:8000/. Stop the preview with Ctrl+C.
 
 ## License
 
-[MIT](LICENSE). You may use, modify, and share the content, including commercially, while retaining the copyright and license notice. Content is provided without warranty.
+[MIT](LICENSE). You may use, change, and share the content, including commercially. Retain the copyright and license notice. The license provides no warranty.
