@@ -67,6 +67,8 @@ CSV and vCard exports are optional proposed outputs. Any capture or export must 
 
 Read the full [bzCRM design and requirements](DESIGN.md) for the capture fields, source-quality rules, logging and recovery requirements, query behavior, and open implementation decisions.
 
+See the [step-by-step roadmap](ROADMAP.md) for the files to create, implementation order, and release checks.
+
 Feedback and pull requests are welcome. See the [BZiPS contribution guide](../../CONTRIBUTING.md). The project uses the [MIT license](../../LICENSE).
 
 [Website project page](https://bethz.github.io/bzips/projects/bzcrm/) | [BZiPS home](../../README.md)
