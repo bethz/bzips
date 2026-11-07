@@ -10,7 +10,7 @@ Ongoing relationship management is the default. Preparing for a possible job cha
 
 ## What is planned
 
-Planned capabilities include **career and project arcs, two-phase ingestion, natural-language querying, and recovery logging**. In practice, that means tracing how your work and relationships developed, capturing one week for review before backfilling your chosen years of history, asking questions about people and projects, and recording progress so interrupted ingestion can resume from verified checkpoints.
+Planned capabilities include **career and project arcs, three-phase ingestion and maintenance, natural-language querying, and recovery logging**. In practice, that means tracing how your work and relationships developed, reviewing a seven-day email pilot before historical backfill, maintaining new activity weekly, asking questions about people and projects, and recording progress so interrupted ingestion can resume from verified checkpoints.
 
 | Capability | Purpose |
 |---|---|
@@ -30,16 +30,19 @@ The structure will include people, organizations, workstreams, meetings, interac
 
 The shared project will provide the skill, prompts, templates, and fictional examples. Your populated vault and private records stay separate from this public repository.
 
-## Two-phase Outlook and Teams ingestion
+## Three-phase email ingestion and maintenance
 
 The intended users already have **Microsoft Work IQ** configured.
 
-1. **First-week capture:** ingest the most recent complete week of accessible Outlook and Teams activity, create linked records, and let you review the results.
-2. **Historical backfill:** ask how many years you want to cover, confirm the exact date range, then work backward week by week without duplicating already captured work.
+Before starting, bzCRM will confirm your mailbox and accessible sources, timezone, vault destination, and whether to include personal contacts or professional contacts only. Sent and received Outlook email is the default source; Teams and other sources will be included only when explicitly within your confirmed scope and accessible.
 
-Every batch will be logged before retrieval starts and checkpointed after saved notes are verified. Logs will record source coverage, partial results, errors, note links, and the exact resume position. Recovery will reconcile unfinished batches with saved notes and preserve your corrections.
+1. **One-week pilot:** process only the last seven complete days of sent and received email, stating exact dates first. Create linked notes, a home page, and a review dashboard. Save the review and checkpoint, then **stop for your corrections and explicit approval**.
+2. **Historical backfill:** after approval, ask for your desired history range and confirm the exact dates. Work backward one calendar month at a time, splitting into weeks when volume or retrieval limits require it.
+3. **Weekly maintenance:** after backfill, process new activity when you invoke the workflow. Report new people, changed details, project associations, explicit follow-ups, and unresolved questions. Do not send messages or create schedules unless you request them.
 
-Access, retention, and retrieval limits may leave gaps. Processing every requested week will not be presented as proof that every message or contact was retrieved.
+Every batch will be logged before retrieval starts and checkpointed after saved notes are verified. Logs will record source coverage, partial results, errors, note links, and the next unprocessed window. Recovery will reconcile unfinished batches with saved notes, deduplicate messages and interactions, and preserve your corrections. Older evidence will not overwrite newer current information.
+
+Access, retention, and retrieval limits may leave gaps. A window will be marked complete only when retrieval coverage supports it; otherwise it will remain partial or blocked with an explanation of what remains. Selected search results will never be presented as proof that every message or contact was retrieved.
 
 ## Example requests
 

@@ -1,7 +1,7 @@
 # bzCRM design and requirements
 
 **Status:** Design draft for review. Not an implemented or tested skill.
-**Version:** 0.1
+**Version:** 0.2
 **Documented:** November 6, 2026
 
 This document captures the agreed direction before implementation begins. It does not initiate ingestion, create a populated CRM, or install a skill.
@@ -10,7 +10,7 @@ This document captures the agreed direction before implementation begins. It doe
 
 bzCRM is a personal relationship and project knowledge base, not just a contact extractor. It preserves professional network context: who someone is, how the user knows them, what they worked on together, what each person contributed, and what needs follow-up.
 
-Ongoing relationship management is the default. Preparing for a possible job change is an optional workflow, not the sole purpose.
+Ongoing relationship management is the default. Before capture, confirm whether the vault is professional-only or includes personal contacts. Preparing for a possible job change is an optional workflow, not the sole purpose.
 
 The skill has three layers:
 
@@ -56,7 +56,7 @@ Obsidian Markdown notes, properties, and internal links are the source of truth.
 | `90-Templates/` | Consistent note and capture templates |
 | `99-Attachments/` | Supporting files the user is authorized to retain |
 
-Use Obsidian links to connect people, organizations, workstreams, meetings, and interactions. Preserve dated roles, contributions, commitments, milestones, pivots, and outcomes so historical arcs can be reconstructed.
+Use valid Obsidian `[[wiki-links]]` to connect people, organizations, workstreams, meetings, and interactions. Verify that generated links resolve to the intended notes. Create a home page and review dashboard, and use consistent templates and shared property conventions across note types. Preserve dated roles, contributions, commitments, milestones, pivots, and outcomes so historical arcs can be reconstructed.
 
 ### Query index
 
@@ -68,61 +68,72 @@ All durable updates belong in the Markdown records. Do not store unique knowledg
 
 ## Discovery and ingestion sources
 
-The core ingestion sources are Outlook email and Teams activity through the user's existing Work IQ connection.
+The default ingestion source is sent and received Outlook email through the user's existing Work IQ connection. Teams remains an optional supported source when the user explicitly includes it and access is available. Do not silently expand an email-only request into Teams or other sources.
 
-Where actually accessible, include contacts, sent and received email, calendar attendees, meeting notes, chats, and project documents. Access to one source does not imply access to all of them.
+Other sources may include contacts, calendar attendees, meeting notes, chats, and project documents when both accessible and within the user's confirmed scope. Access to one source does not imply access to all of them.
 
 Include colleagues, former colleagues, customers, partners, vendors, mentors, and other professional collaborators. Do not rely only on email senders and recipients. Include meeting attendees and named collaborators in project deliverables, thank-you messages, and recognition notes when evidence supports their involvement.
 
 Exclude automated senders, newsletters, and distribution lists from individual profiles. A mention, CC entry, or shared meeting attendance does not by itself prove ownership, contribution, or a direct relationship.
 
-First identify the actual accessible sources, available date range, vault location, and timezone. Ask only for information needed to proceed. Report unavailable sources explicitly.
+Before starting, confirm the mailbox and accessible sources, the user's timezone, where to save the vault, and whether to include personal contacts or professional contacts only. Identify source-specific date-range limits and report unavailable sources explicitly. Ask only for information needed to proceed.
 
-## Two-phase ingestion
+## Three-phase ingestion
 
-### Phase 1: first-week capture and review
+### Phase 1: one-week pilot
 
-1. Identify one most recent complete week using explicit start/end dates and timezone.
+1. Identify the last seven complete days in the confirmed timezone, excluding the current incomplete day. State the exact start/end dates and timestamp boundaries before extraction. This is a rolling seven-day window, not necessarily a calendar week.
 2. Check whether that window was already captured.
 3. Log the ingestion attempt before retrieval begins.
-4. Retrieve Outlook and Teams evidence in manageable batches. Include other supported sources when accessible and relevant.
-5. Create or update linked notes without overwriting user corrections.
+4. Retrieve sent and received email in manageable batches within the stated window. Include other sources only if explicitly within the confirmed scope. Do not expand beyond the pilot window.
+5. Create or update linked people, organizations, workstreams, and dated interaction notes without overwriting user corrections. Create the home page and review dashboard.
 6. After each saved and verified batch, append a completion or partial-progress entry and save its resume position.
-7. Present the week's results, source coverage, missing details, unresolved identities, and remaining review items.
-8. Let the user review the format and captured result before historical backfill starts.
+7. Save a review showing people and workstreams created, representative linked profiles, missing details, possible duplicates, exact sources and dates processed, retrieval limits, failures, and remaining coverage.
+8. Save the review and persistent checkpoint in the vault, then **STOP**. Wait for the user's corrections and explicit approval before historical backfill. An ingestion summary is not approval.
 
-A single week may require multiple batches. Do not postpone recovery logging until the entire week finishes.
+A seven-day pilot may require multiple batches. Do not postpone recovery logging until the entire pilot finishes.
 
 ### Phase 2: historical backfill
 
-After the first-week review, ask how many years of history the user wants.
+Only after pilot approval, ask for the user's desired history range. Accept explicit dates or a duration, including a number of years.
 
-Translate the answer into an explicit date interval anchored to the reviewed first week's end, and confirm the dates rather than treating a year as a fixed number of weeks. Handle partial boundary weeks and leap years.
+Translate the answer into an explicit date interval and confirm its boundaries and timezone. If given a duration, state the anchor date. Do not treat a year as a fixed number of weeks. Handle leap years and partial boundary months.
 
-Process backward one week at a time within that interval. Exclude already verified work, including the Phase 1 week, unless a correction or retry is required.
+Work backward **one calendar month at a time** within that interval. Split a month into weeks or smaller batches when volume or retrieval limits require it. Clip each window to the requested interval and exclude already verified work, including the Phase 1 pilot, unless a correction or retry is required.
 
-For every week:
+For every batch:
 
 - Record the exact window and sources attempted.
 - Capture and verify manageable batches.
 - Merge into existing records using supported identity matching.
+- Deduplicate source messages and dated interactions across batches, including pilot/backfill boundaries and retries.
 - Preserve newer roles and details; retain older values as dated history.
 - Do not move latest evidenced interaction dates backward.
 - Log completion, partial work, gaps, errors, and the next resume position.
-- Continue to the next earlier week only when the current week's state is recorded.
+- Save the next unprocessed window and any unresolved coverage gaps before proceeding. A partial window must remain visible for recovery even if other windows are processed.
 
 Historical backfill may span multiple sessions. Do not promise that one prompt will run uninterrupted for years of history.
+
+### Phase 3: weekly maintenance
+
+After backfill, support weekly processing of new activity when invoked by the user. State the exact window, reconcile it with existing coverage, and capture any unprocessed gap so activity since the pilot is not silently lost.
+
+Report new people, changed details, project associations, explicit follow-ups, and unresolved questions. Apply the same templates, source-quality rules, deduplication, correction preservation, and batch logging as earlier phases.
+
+Do not send messages or create schedules unless the user explicitly requests them. "Weekly maintenance" describes the intended review cadence, not automatic authorization for a scheduled job.
 
 ### What completion means
 
 Keep these separate:
 
 - **Batch saved:** the identified notes were persisted and verified.
-- **Week processed:** the defined window was attempted and its results and gaps were recorded.
+- **Window processed:** the defined pilot, month, week, or smaller batch was attempted and its results and gaps were recorded. This does not necessarily mean complete coverage.
 - **Coverage:** what sources and items were actually retrieved and reviewed.
 - **User approval:** the user reviewed and accepted a result or format.
 
-The historical run is fully processed only when every requested window is accounted for, with partial or blocked windows clearly identified. Exhaustive retrieval is a separate claim and must never be inferred merely from processing every week.
+Mark a window **complete** only when retrieval coverage supports it and its saved notes have been verified. Otherwise mark it **partial** or **blocked**, explain what remains, and preserve the recovery position. A saved batch may be complete while the containing month remains partial.
+
+The historical run is accounted for only when every requested window has a recorded state. If any windows remain partial or blocked, do not label the backfill complete. Exhaustive retrieval must never be inferred merely from selected search results or from attempting every window.
 
 Work IQ retrieval limits, permissions, retention, and inaccessible content may prevent complete coverage. Do not claim "all contacts," "all messages," or complete history without supporting evidence.
 
@@ -143,7 +154,7 @@ Capture only values supported by identified sources:
 - Explicit commitments, outstanding follow-ups, and dates.
 - Source references, discovery-source tags, and date last verified.
 
-Never guess email formats, phone numbers, roles, or relationship strength. Mark unavailable information as **Unknown** in user-facing outputs. These earliest/latest dates describe reviewed evidence, not necessarily the entire relationship.
+Never guess email formats, phone numbers, roles, attendance, or relationship strength. Mark unavailable information as **Unknown** in user-facing outputs. These earliest/latest dates describe reviewed evidence, not necessarily the entire relationship.
 
 Preserve multiple valid contact details with labels and source dates. Flag conflicting or potentially outdated information instead of silently choosing a value.
 
@@ -153,6 +164,7 @@ Preserve multiple valid contact details with labels and source dates. Flag confl
 - Retain user corrections. Preserve conflicting source evidence and flag it for review.
 - Tag discovery sources, such as email, meeting-attendee, project-document, or manual.
 - Separate documented facts, explicit commitments, and suggested next actions.
+- Do not send messages or create schedules without an explicit user request.
 - Capture only information the user is authorized to retain, regardless of whether it belongs in a note or an export.
 - Keep source references wherever practical. If a source lacks a durable link, preserve its available identifying metadata without fabricating a URL.
 - After project or communication capture, check for overlooked named collaborators.
@@ -249,11 +261,19 @@ Each ingestion summary should state unique people captured, missing contact deta
 
 ### First capture
 
-> Use bzCRM to ingest my most recent complete week of Outlook and Teams activity into my Starter Knowledge Graph Vault. Let me review the result, then ask how many years of history to backfill.
+> Create my personal Obsidian CRM in a Starter Knowledge Graph Vault from email, building relationship context rather than just a contact list. Confirm my mailbox, accessible sources, timezone, vault location, and whether to include personal contacts. Process only the last seven complete days of sent and received email, stating exact dates first. Log every batch, save a linked review and checkpoint, then stop for my corrections and approval before asking for my historical range.
 
 ### Resume
 
 > Resume bzCRM ingestion from the last verified checkpoint. Reconcile any unfinished batches with the saved notes before continuing.
+
+### Historical backfill
+
+> After my pilot approval, ask for my desired history range and confirm the exact dates. Work backward one calendar month at a time, splitting into weeks when needed. Preserve corrections, deduplicate messages and interactions, and checkpoint every batch. Keep incomplete coverage marked partial.
+
+### Weekly maintenance
+
+> Update my bzCRM from new email activity for an explicit weekly window. Report new people, changed details, project associations, follow-ups, and unresolved questions. Save the review and checkpoint. Do not send messages or create schedules.
 
 ### Query
 
@@ -271,7 +291,7 @@ Before building, confirm:
 
 - The initial supported host, installation/package format, and required local file-access capabilities.
 - Exact property schema, filenames, identity keys, and relationship/event indexing.
-- Weekly-boundary/timezone handling and how the user confirms the historical date interval.
+- Exact timestamp-boundary conventions, calendar-month splitting, and how the user confirms the historical date interval.
 - Source-specific retrieval/pagination capabilities and how unexhausted windows are represented.
 - The checkpoint format, batch sizing, and recovery/deduplication tests.
 - Whether CSV/vCard exports ship initially or later.
@@ -280,14 +300,20 @@ No required Obsidian community plugin has been selected. Do not introduce one si
 
 ## Review scenarios for implementation
 
-- A first-week capture creates linked, sourced records and exposes unavailable evidence.
-- A reviewed Phase 1 result gates Phase 2; the requested historical interval is explicit.
-- Backfill handles already captured and partial boundary weeks without duplicates.
+- A seven-complete-day email pilot confirms mailbox, scope, timezone, and destination; creates valid linked notes and a home/review dashboard; and never expands the stated window.
+- Phase 1 saves its review and checkpoint, then stops. Phase 2 cannot start without explicit approval.
+- Backfill confirms the requested interval and handles calendar-month windows, weekly subdivisions, pilot overlap, and partial boundary months without duplicate messages or interactions.
 - A failure after some notes are saved can resume without losing corrections or double-counting.
 - Older evidence does not overwrite newer role/contact history or move latest-interaction dates backward.
 - Same-name people remain separate when identity is ambiguous.
 - People and project queries return cited answers; arcs explicitly identify evidence gaps.
-- A processed date interval with incomplete retrieval is never described as exhaustive history.
+- A processed date interval with partial retrieval stays partial and is never described as complete or exhaustive history.
+- Weekly maintenance captures new activity and exposes gaps without sending messages or creating schedules.
+
+## Version history
+
+- **0.2, November 6, 2026:** Adopted the revised email-first, three-phase workflow. Changed the pilot to the last seven complete days, added an explicit saved-review/approval stop, changed historical backfill to calendar months with weekly subdivisions, and added user-invoked weekly maintenance and coverage-aware completion.
+- **0.1, November 6, 2026:** Initial design, based on the earlier two-phase Outlook/Teams weekly-backfill discussion.
 
 ## Basis
 
