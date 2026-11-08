@@ -1,10 +1,10 @@
 # bzCRM design
 
-**Status:** Design draft. Not implemented or tested.
-**Version:** 0.3
+**Status:** Packaging design. BZCOWCRM runs privately; the public bzCRM package is not released.
+**Version:** 0.4
 **Updated:** November 8, 2026
 
-This document defines what to build. Reading it does not install a skill or start an import.
+This document defines how to adapt the existing private CRM for friends. Reading it does not install skills or start an import.
 
 ## Purpose
 
@@ -16,7 +16,14 @@ Support everyday relationship management. Job-change preparation is optional. Be
 
 ## Package and supported setup
 
-Publish one bzCRM skill, a starter Obsidian vault, prompts, templates, setup instructions, and fictional examples in BZiPS. Label each part as draft or tested. Record the version, test date, supported tools, and known limits.
+Adapt the current BZCOWCRM workflow. Publish two core skills, a starter Obsidian vault, prompts, templates, setup instructions, and fictional examples in BZiPS.
+
+- `bzcrm-ingest` reads selected sources, updates notes, applies corrections, and saves progress. Trial, older history, weekly updates, manual additions, and resume are its modes.
+- `bzcrm-query` reads saved notes and answers questions with evidence. It covers briefings, collaborators, follow-ups, relationship history, and draft project and career histories.
+
+A separate `bzcrm-history` skill is optional if histories later need their own format and review workflow. Do not require a separate skill for every prompt. Keep record formats and evidence rules shared.
+
+Label each part as draft or tested. Record the version, test date, supported tools, and known limits. Private use does not by itself verify installation on a friend's setup.
 
 The first planned setup is GitHub Copilot CLI, an existing Work IQ connection, and local vault access. Verify installation and compatibility before release. Do not claim support for other assistants without checking their source and file access.
 
@@ -61,9 +68,11 @@ Use Obsidian `[[wiki-links]]`. Check that each link points to the correct note. 
 
 ### Search index
 
-Build a local index for people, projects, dated events, and their links. A people-only index is not enough for project and career history.
+Start queries from linked Markdown notes. A local index is optional, not a release requirement.
 
-The index must be rebuildable from the notes. Store no unique information only in the index. Keep it outside the public repository. The schema and stale-index handling still need to be designed.
+The existing BZCOWCRM helper indexes people. It does not index full project or career history. Use the linked notes for those answers rather than implying the people index covers them.
+
+Any index must be rebuildable from the notes. Store no unique information only in it. Keep it outside the public repository and document how to refresh it. Extend indexing only when queries need it.
 
 ## Import workflow
 
@@ -193,7 +202,9 @@ Report retrieval and storage errors directly. Do not replace an error with a suc
 
 ## Questions and histories
 
-Support person briefings, project summaries, relationship history, collaborator searches, follow-ups, and missing-detail checks. Use the [draft prompt list](README.md#what-prompts-are-included) as the user entry point.
+Use `bzcrm-query` for person briefings, project summaries, relationship history, collaborator searches, follow-ups, and missing-detail checks. Use the [draft prompt list](README.md#what-prompts-are-included) as the user entry point.
+
+Search saved notes first. Do not silently import new source data to fill a query gap. Explain what is missing and offer a scoped capture through `bzcrm-ingest`. Query requests do not authorize changes to source profiles.
 
 Answers must link to supporting notes and cite original sources when available. State the evidence period, separate facts from interpretation, and show gaps.
 
@@ -219,7 +230,7 @@ This prompt does not imply that export support is available.
 
 Confirm the supported host, package format, operating systems, and local file access. Define note properties, filenames, identity keys, event links, timestamp boundaries, and source pagination.
 
-Choose batch sizes, checkpoint format, duplicate-prevention tests, and index rebuild rules. Decide whether exports belong in the first release. No required Obsidian community plugin has been selected.
+Reuse and verify the existing capture and coverage approach. Choose batch sizes, checkpoint format, and duplicate-prevention tests for the shared package. Define index rebuild rules only if an index is included. Decide whether exports belong in the first release. No required Obsidian community plugin has been selected.
 
 ## Required tests
 
@@ -235,6 +246,7 @@ Choose batch sizes, checkpoint format, duplicate-prevention tests, and index reb
 
 ## Version history
 
+- **0.4, November 8, 2026:** Reframed the work as packaging the running BZCOWCRM for friends. Recommended ingest and query skills, with histories as query prompts initially. Made indexing optional and added manual-capture and follow-up prompts.
 - **0.3, November 8, 2026:** Shortened the language and linked the draft prompt inventory. Made Outlook and user-selected Teams the recommended trial. Kept email-only scope, the review stop, and coverage and recovery requirements.
 - **0.2, November 6, 2026:** Added the seven-complete-day email trial, saved review and approval stop, calendar-month history import, on-request weekly updates, and coverage-aware completion.
 - **0.1, November 6, 2026:** Initial design from the Outlook/Teams planning discussion.
