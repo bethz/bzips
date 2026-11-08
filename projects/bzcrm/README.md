@@ -1,95 +1,74 @@
 # bzCRM
 
-**Status: Coming soon. The design document is available. No working or tested skill is available yet.**
+bzCRM is a planned tool that turns Outlook email and Teams activity into linked notes about people, shared projects, and follow-ups.
 
-bzCRM is a planned personal relationship and project knowledge base, modeled on BZCOWCRM. It will record your professional network and the context behind each relationship:
+**Status: Design only. No installable skill, starter vault, or tested workflow is available yet.** The prompts below are drafts for the planned skill.
 
-- Who each person is and how you know them.
-- Which projects you worked on together.
-- What each person contributed.
-- Which explicit follow-ups remain open.
+## More than a contact list
 
-It will also create **career arcs** and **project arcs** from dated evidence with source references. Career arcs will trace how your roles, skills, collaborations, and contributions developed over time. Project arcs will trace initiatives through their origins, milestones, pivots, and outcomes.
+1. **Remember how you know someone.** Keep shared work and relationship history, not just a name and email.
+2. **See who did what.** Connect people to project decisions, contributions, and outcomes.
+3. **Prepare for the next conversation.** Review shared history, open commitments, and follow-ups in one briefing.
+4. **Find the right person for new work.** Ask who you worked with on a topic or project, with evidence for the match.
+5. **Show how your work developed.** Build a dated career history from projects, roles, and contributions, with source links.
 
-Ongoing relationship management is the default. Preparing for a possible job change will be an optional workflow, not the only purpose.
+## Simple setup
 
-## Planned capabilities
+The first release is planned for GitHub Copilot CLI with Work IQ already connected and a local Obsidian vault. Installation steps still need to be verified.
 
-Planned capabilities include **career and project arcs, three-phase ingestion and maintenance, natural-language querying, and recovery logging**.
+1. **Choose your sources and folder.** Confirm your mailbox, Outlook and Teams access, timezone, and where to save the notes. Choose professional contacts only or include personal contacts.
+2. **Try one week.** Read the last seven complete days of sent and received Outlook email and the Teams activity you select. Save linked notes and a review page. Stop.
+3. **Check the results.** Open the notes in Obsidian. Check names, shared projects, source links, and follow-ups. Correct mistakes and review missing source data.
+4. **Add older history.** When you approve the trial, choose an exact date range. Read older activity one calendar month at a time. Split busy months into smaller batches.
+5. **Keep it current.** Request an update each week. Ask questions about people and projects at any time after notes are saved.
 
-Ingestion means reading accessible source information and saving linked evidence in your vault. You will review a seven-day email pilot before historical backfill. You can then request weekly updates and ask questions about people and projects. Recovery logging will record saved progress so interrupted ingestion can resume from verified checkpoints.
+Start small. Do not import years of history until the one-week trial gives you useful results.
 
-| Capability | Purpose |
+## What prompts are included?
+
+These are **draft requests**, not commands for an available skill. The planned skill will contain the detailed rules for each request.
+
+| Task | Draft prompt |
 |---|---|
-| Capture and maintain | Build linked people, organization, project, meeting, and interaction records from accessible evidence |
-| Query your knowledge graph | Retrieve people briefings, project summaries, relationship histories, and follow-ups |
-| Create career arcs | Describe your development, or another person's documented professional history, across roles, projects, skills, and contributions |
-| Create project arcs | Connect dated milestones, decisions, contributions, and outcomes into an evidence-based project history |
-| Resume reliably | Log every ingestion batch and recover from the last verified checkpoint |
+| Try one week | "Start a bzCRM trial from Outlook and Teams. Confirm my sources, timezone, and vault folder. Read only the last seven complete days. Save the notes, review page, and progress. Stop for my review." |
+| Review the trial | "Show the trial results, possible duplicates, missing details, and source gaps. Apply my corrections. Do not add older history yet." |
+| Add older history | "I approve the trial. Add Outlook and Teams history from [start date] to [end date]. Confirm the dates and selected sources before you start." |
+| Resume | "Resume bzCRM from the last verified save. Check unfinished work against the saved notes first." |
+| Update | "Update bzCRM from my selected Outlook and Teams sources for [start date] to [end date]. Show changes, follow-ups, and gaps." |
+| Prepare for a conversation | "Who is [person], how do I know them, and what have we worked on? Include open follow-ups and source links." |
+| Find a collaborator | "Who have I worked with on [topic or project]? Show their documented contributions and when we last interacted in the reviewed sources." |
+| Trace a project | "Show [project]'s decisions, milestones, changes, contributors, and outcomes. Cite the evidence and show gaps." |
+| Review career history | "Show how my work developed across roles, projects, skills, and contributions. Use dated evidence. Do not invent achievements." |
 
-Answers and arcs will cite supporting notes, separate facts from interpretation, and identify gaps. They will not invent achievements, ownership, or a continuous history where evidence is missing.
+## What skills are included?
 
-## Your Starter Knowledge Graph Vault
+**None are released yet.** The plan is one installable **bzCRM skill**, not a separate skill for every prompt. It will:
 
-Your CRM will live in an **Obsidian Starter Knowledge Graph Vault**, or an existing compatible vault. The knowledge graph consists of linked notes about people, organizations, projects, and interactions. Markdown notes, properties, and Obsidian links will remain the source of truth.
+- Read selected sources and update linked notes.
+- Answer questions about people, relationships, projects, and follow-ups.
+- Build project and career histories from dated evidence.
+- Save progress and resume interrupted work.
 
-The structure will include people, organizations, workstreams, meetings, interactions, dashboards, templates, and supporting attachments. A rebuildable local query index will support retrieval without replacing the Markdown vault.
+The release will also include a starter vault, note templates, setup instructions, and fictional examples. See the [build plan](ROADMAP.md) for what remains.
 
-The shared project will provide the skill, prompts, templates, and fictional examples. Your populated vault and private records stay separate from this public repository.
+## Where does the information go?
 
-## Three-phase email ingestion and maintenance
+Your notes stay in your own folder, outside this public repository. Obsidian displays them as linked Markdown files. You can read and edit the files without bzCRM.
 
-The intended users already have **Microsoft Work IQ** configured.
+The vault will contain people, organizations, projects, meetings, interactions, and review pages. A local search index can be rebuilt from those notes. It will not be the only copy of your information.
 
-Before ingestion, bzCRM will ask you to confirm:
+## What should I know before using it?
 
-- Your mailbox and accessible sources.
-- Your timezone.
-- Where to save the vault.
-- Whether to include personal contacts or professional contacts only.
+- **Source access can be incomplete.** Work IQ permissions, retention, and retrieval limits affect what bzCRM can read. It must show gaps, not claim to have read every message.
+- **Answers need evidence.** A name on a CC list does not prove a relationship, contribution, or project role.
+- **Your corrections stay.** New imports must preserve your edits. Older records must not replace newer details.
+- **Updates are on request.** bzCRM will not send messages or create a schedule unless you ask.
+- **Exports are a later option.** CSV and vCard are proposed, not delivered. Retain or export only information you are allowed to keep.
 
-Sent and received Outlook email is the default source. bzCRM will include Teams or other sources only when you explicitly include them and access is available.
+## More detail
 
-1. **One-week pilot:** bzCRM will state exact dates first. It will process only the last seven complete days of sent and received email. It will create linked notes, a home page, and a review dashboard. It will save the review and checkpoint. It will then **stop for your corrections and explicit approval**.
-2. **Historical backfill:** after approval, bzCRM will ask for your desired history range. It will ask you to confirm the exact dates. It will work backward one calendar month at a time. It will split months into weeks when volume or retrieval limits require it.
-3. **Weekly maintenance:** after backfill, bzCRM will process new activity when you request it. It will report new people, changed details, project associations, explicit follow-ups, and unresolved questions. It will not send messages or create schedules unless you request them.
+[Design and requirements](DESIGN.md) | [Build plan](ROADMAP.md) | [Website](https://bethz.github.io/bzips/projects/bzcrm/)
 
-bzCRM will log each batch before retrieval starts. It will save a checkpoint after it verifies the saved notes. The checkpoint will record progress and the next unprocessed window.
+Feedback and pull requests are welcome. See the [contribution guide](../../CONTRIBUTING.md) and [MIT license](../../LICENSE).
 
-Logs will record source coverage, partial results, errors, and note links. During recovery, bzCRM will compare unfinished batches with saved notes. It will prevent duplicate messages and interactions and preserve your corrections. Older evidence will not overwrite newer current information.
-
-Access, retention, and retrieval limits may leave gaps. bzCRM will mark a window complete only when retrieval coverage supports it. Otherwise, it will mark the window partial or blocked and explain what remains. Selected search results do not prove that retrieval included every message or contact.
-
-## Example requests
-
-These describe planned workflows, not commands for an already available skill:
-
-- "Who is Alex, how do I know her, and what have we worked on?"
-- "Who contributed to this project, and what remains open?"
-- "Trace this project's milestones, pivots, and outcomes."
-- "Create a career arc showing how my work evolved across roles, skills, and contributions."
-- "Who have I worked with on AI projects?"
-- "Resume ingestion from the last verified checkpoint."
-
-## Delivery and requirements
-
-The planned package includes:
-
-- An installable skill and a Starter Knowledge Graph Vault.
-- Copy-ready starter and follow-up prompts.
-- Setup instructions and templates.
-- Fictional examples and known limitations.
-
-GitHub Copilot CLI with Work IQ and local vault access is the recommended first host. Maintainers must still confirm installation details and compatibility. Maintainers will add support for other assistants only after they verify connector and file-access capabilities.
-
-CSV and vCard exports are optional proposed outputs. Any capture or export must contain only information you are authorized to retain.
-
-## Design and contributions
-
-Read the [bzCRM design and requirements](DESIGN.md) for capture fields, source-quality rules, logging, recovery, queries, and open implementation decisions.
-
-See the [step-by-step roadmap](ROADMAP.md) for the required files, implementation order, and release criteria.
-
-Feedback and pull requests are welcome. See the [BZiPS contribution guide](../../CONTRIBUTING.md). The project uses the [MIT license](../../LICENSE).
-
-[Website project page](https://bethz.github.io/bzips/projects/bzcrm/) | [BZiPS home](../../README.md)
+[BZiPS home](../../README.md)
