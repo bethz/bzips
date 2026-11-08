@@ -49,7 +49,7 @@ Let the user select an agent or approved folder that supports the required acces
 
 | Request | Job |
 |---|---|
-| Start, try one week, or create my CRM | Trial |
+| Start, quick trial, or create my CRM | Trial |
 | Add older history or import a chosen period | History |
 | Ingest since the last time we ran or update my CRM | Update |
 | Continue unfinished work | Resume |
@@ -161,7 +161,12 @@ Link notes with paths such as `[[10-People/Alex Example]]`.
 Check each link's target.
 Reuse existing person, organization, and project notes.
 
-## Trial: one week
+## Quick trial: read one week of existing history
+
+Check source access and note saving with the past seven complete days of activity.
+The week is the history range, not the run duration.
+Process existing activity after the access checks.
+Do not wait a week or create a scheduled job.
 
 1. Use a reliable current date from the agent's tools or ask the user for it.
 2. Select the last seven complete calendar days in the user's timezone.

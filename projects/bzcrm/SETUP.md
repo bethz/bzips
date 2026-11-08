@@ -40,11 +40,14 @@ An agent's cloud folder is not automatically a folder on your hard drive.
 The Ask instructions can also answer from notes you provide.
 That answer covers only those notes, not your whole CRM.
 
-## 3. Try one week
+## 3. Run a quick trial using existing history
+
+Check that the agent can read your activity and save useful notes.
+The trial uses one week of existing history. It does not run for a week.
 
 Copy this request:
 
-> Start my bzCRM with one week of Outlook and Teams. Ask me where to save the notes. Stop when the trial is ready for me to check.
+> Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
 
 Answer the questions about your mailbox, selected Teams activity, timezone, and notes folder.
 Choose work contacts only unless you also want personal contacts.

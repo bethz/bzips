@@ -24,14 +24,14 @@ Follow [Start bzCRM](SETUP.md) to add the instructions and check access. You wil
 
 1. **Copy this request into your assistant:**
 
-   > Start my bzCRM with one week of Outlook and Teams. Ask me where to save the notes. Stop when the trial is ready for me to check.
+   > Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
 
 2. **Answer its questions.** It will ask which mailbox and Teams activity to use, your timezone, and where to save the notes. Choose work contacts only, unless you also want personal contacts. It will show the dates before it starts.
 3. **Check a few people you know.** Ask it to show the trial results. Are the names right? Are the shared projects right? Tell it what to correct. It will also show information it could not read.
 4. **Add more when you are happy with the trial.** For example: "I approve the trial. Add the last three months. Confirm the dates before you start."
 5. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
 
-The trial reads only the last seven complete days. It stops for your review before adding older history.
+The trial checks that your agent can read your selected sources and save useful notes. It uses one week of existing history, not a week of running time. It stops for your review before adding older history.
 
 ## What prompts are included?
 
@@ -39,7 +39,7 @@ These are requests for the **draft skills**. A prompt is simply a request you ty
 
 | Task | Skill | Draft prompt |
 |---|---|---|
-| Try one week | Import | "Start my bzCRM with one week of Outlook and Teams. Stop for my review." |
+| Quick trial | Import | "Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review." |
 | Review the trial | Import | "Show the trial results and anything missing. Apply my corrections." |
 | Add older history | Import | "I approve the trial. Add the last three months. Confirm the dates before you start." |
 | Continue after a stop | Import | "Continue the unfinished import from where you stopped." |

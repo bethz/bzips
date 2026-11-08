@@ -1,7 +1,7 @@
 # bzCRM design
 
 **Status:** Packaging design with two draft skills. Live imports and agent-specific access need testing.
-**Version:** 0.6
+**Version:** 0.7
 **Updated:** November 8, 2026
 
 This document defines how to adapt the existing private CRM for friends. Reading it does not install skills or start an import.
@@ -86,7 +86,11 @@ Any index must be rebuildable from the notes. Store no unique information only i
 
 "Import" means reading selected sources and saving linked notes. It does not mean copying every message.
 
-### 1. Try one week
+### 1. Quick trial using existing history
+
+Check source access and note saving by importing the past seven complete days.
+The week describes the history range, not the run duration.
+Process existing activity after the access checks. Do not wait for a new week of activity.
 
 1. Use the last seven complete days in the user's timezone. Exclude the current incomplete day. State exact dates and timestamp boundaries first.
 2. Check existing coverage. Log the attempt before reading data.
@@ -265,6 +269,7 @@ Live coverage, resume behavior, and access in Teams Copilot, Claude, or other ag
 
 ## Version history
 
+- **0.7, November 8, 2026:** Clarified that the quick trial reads one week of existing Outlook and Teams history. It does not run for a week.
 - **0.6, November 8, 2026:** Added draft Import and Ask skills, basic setup, agent access checks, a permanent date log, and the "since the last time we ran" prompt.
 - **0.5, November 8, 2026:** Set nontechnical users with Work IQ already connected as the audience. Simplified first-use steps and prompts. Required a step-by-step install guide and a nontechnical peer trial.
 - **0.4, November 8, 2026:** Reframed the work as packaging the running BZCOWCRM for friends. Recommended ingest and query skills, with histories as query prompts initially. Made indexing optional and added manual-capture and follow-up prompts.
