@@ -57,7 +57,9 @@ The release will also include a starter vault, note templates, setup instruction
 
 ## Where does the information go?
 
-Your notes stay in your own folder, outside this public repository. Obsidian displays them as linked Markdown files. You can read and edit the files without bzCRM.
+Your data is saved as plain-text Markdown files (`.md`) in a folder on your hard drive, outside this public repository. You can read and edit them in any text editor, or copy them to another computer. This keeps the data simple and portable, without requiring bzCRM or a database to read it.
+
+Links such as `[[Alex Example]]` and `[[Example Project]]` connect related notes. In Obsidian, these `[[wikilinks]]` let you follow connections between people, projects, meetings, and interactions. Together, the linked notes form a knowledge graph: a record of both the information and how it connects.
 
 The vault will contain people, organizations, projects, meetings, interactions, and review pages. An optional local search index can be rebuilt from those notes. It will not be the only copy of your information.
 
