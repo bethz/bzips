@@ -24,14 +24,18 @@ Follow [Start bzCRM](SETUP.md) to add the instructions and check access. You wil
 
 1. **Copy this request into your assistant:**
 
-   > Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
+   > Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
 
 2. **Answer its questions.** It will ask which mailbox and Teams activity to use, your timezone, and where to save the notes. Choose work contacts only, unless you also want personal contacts. It will show the dates before it starts.
-3. **Check a few people you know.** Ask it to show the trial results. Are the names right? Are the shared projects right? Tell it what to correct. It will also show information it could not read.
-4. **Add more when you are happy with the trial.** For example: "I approve the trial. Add the last three months. Confirm the dates before you start."
-5. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
+3. **Try your saved data.** Copy this request:
 
-The trial checks that your agent can read your selected sources and save useful notes. It uses one week of existing history, not a week of running time. It stops for your review before adding older history.
+   > Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+
+4. **Check the answer.** Are the names and shared projects right? Open the note links. Tell it what to correct. Fewer than three people is fine if the saved data supports fewer.
+5. **Add more when you are happy with the test.** For example: "I approve the test. Add the last three months. Confirm the dates before you start."
+6. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
+
+The quick test checks your selected sources and ability to save and reopen notes and the date log. It uses one week of existing history, not a week of running time. It stops for your review before adding older history.
 
 ## What prompts are included?
 
@@ -39,9 +43,10 @@ These are requests for the **draft skills**. A prompt is simply a request you ty
 
 | Task | Skill | Draft prompt |
 |---|---|---|
-| Quick trial | Import | "Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review." |
-| Review the trial | Import | "Show the trial results and anything missing. Apply my corrections." |
-| Add older history | Import | "I approve the trial. Add the last three months. Confirm the dates before you start." |
+| Quick test | Import | "Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review." |
+| Try your saved data | Ask | "Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes." |
+| Review the test | Import | "Show the test results and anything missing. Apply my corrections." |
+| Add older history | Import | "I approve the test. Add the last three months. Confirm the dates before you start." |
 | Continue after a stop | Import | "Continue the unfinished import from where you stopped." |
 | Update | Import | "Can you ingest for bzCRM since the last time we ran?" |
 | Check processed dates | Ask | "What dates have we ingested for bzCRM?" |

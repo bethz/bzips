@@ -1,6 +1,6 @@
 ---
 name: bzcrm-ingest
-description: "Import Outlook and Teams activity into a private bzCRM notes folder. Use for a trial, older history, updates since the last run, corrections, manual capture, or resume."
+description: "Import Outlook and Teams activity into a private bzCRM notes folder. Use for a quick test, older history, updates since the last run, corrections, manual capture, or resume."
 license: MIT
 ---
 
@@ -49,7 +49,7 @@ Let the user select an agent or approved folder that supports the required acces
 
 | Request | Job |
 |---|---|
-| Start, quick trial, or create my CRM | Trial |
+| Start, quick test, or create my CRM | Quick test |
 | Add older history or import a chosen period | History |
 | Ingest since the last time we ran or update my CRM | Update |
 | Continue unfinished work | Resume |
@@ -161,9 +161,10 @@ Link notes with paths such as `[[10-People/Alex Example]]`.
 Check each link's target.
 Reuse existing person, organization, and project notes.
 
-## Quick trial: read one week of existing history
+## Quick test: check required connections
 
 Check source access and note saving with the past seven complete days of activity.
+Check that you can reopen the saved notes and date log.
 The week is the history range, not the run duration.
 Process existing activity after the access checks.
 Do not wait a week or create a scheduled job.
@@ -177,14 +178,15 @@ Do not wait a week or create a scheduled job.
 7. Save the review and the checkpoint.
 8. Stop for corrections and explicit approval.
 
-The trial may need several batches.
-Do not import older history because the trial finished.
+The test may need several batches.
+Do not import older history because the test finished.
 A saved summary is not user approval.
-If the trial is partial, show the gaps before asking for approval.
+If the test is partial, show the gaps before asking for approval.
+Keep earlier review approvals valid when labels change.
 
 ## History: older dates
 
-Start only after the user approves the trial.
+Start only after the user approves the test.
 Record that approval and its date in the checkpoint.
 
 Ask for a date range or duration.
@@ -216,15 +218,15 @@ Example request:
 7. Save the updated date log, review, and checkpoint.
 
 Do not use the last run's clock time as proof of source coverage.
-Do not skip gaps between the trial, history import, and updates.
+Do not skip gaps between the test, history import, and updates.
 Keep older partial windows listed even when newer work proceeds.
 Retry only within approved dates and sources.
 Ask before adding older dates outside that scope.
 Use a reliable current date from the agent's tools or ask the user for it.
 
-If no usable log exists, ask for a trial or an explicit start date.
+If no usable log exists, ask for a quick test or an explicit start date.
 Do not guess when the previous run ended.
-If trial approval is pending, complete its review before starting a new update.
+If test approval is pending, complete its review before starting a new update.
 
 ## Log each batch
 
@@ -325,6 +327,18 @@ Next step:
 
 Link to the review and `ingestion-log.md`.
 Show saved work separately from complete source coverage.
+
+After the quick test, give the user this copy-ready request for the Ask skill:
+
+> Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+
+Explain that this question uses only the saved test data.
+Tell the user to check the names, shared work, and note links.
+If the saved data has no supported collaborators, state that limit.
+Do not invent records to make the example look useful.
+Offer the request without running it automatically.
+Do not treat this question as approval to import older history.
+
 Report retrieval and storage errors directly.
 Do not report a failed save as success.
 Do not send messages or create schedules unless requested.

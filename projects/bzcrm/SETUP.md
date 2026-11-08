@@ -40,14 +40,15 @@ An agent's cloud folder is not automatically a folder on your hard drive.
 The Ask instructions can also answer from notes you provide.
 That answer covers only those notes, not your whole CRM.
 
-## 3. Run a quick trial using existing history
+## 3. Run a quick test to check connections
 
 Check that the agent can read your activity and save useful notes.
-The trial uses one week of existing history. It does not run for a week.
+Check that it can reopen the notes and date log.
+The quick test uses one week of existing history. It does not run for a week.
 
 Copy this request:
 
-> Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
+> Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
 
 Answer the questions about your mailbox, selected Teams activity, timezone, and notes folder.
 Choose work contacts only unless you also want personal contacts.
@@ -56,13 +57,23 @@ The agent will state the dates before it starts.
 It will read only the last seven complete days.
 It will create notes, a review page, and a saved date log.
 
-## 4. Check the results
+## 4. Try your saved data
 
 Copy this request:
 
-> Show the trial results and anything missing.
+> Show the test results and anything missing.
 
-Check a few people and projects you know.
+Then use the Ask instructions with this request:
+
+> Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+
+Expect a short answer with people, shared work, follow-ups, and note links.
+This shows what the saved data can tell you, beyond names and email addresses.
+Fewer than three people is fine if the data supports fewer.
+Missing projects or follow-ups must stay missing, not become guesses.
+
+Check the names and shared work.
+Open the note links to check the answer.
 Tell the agent what to correct.
 It must show information it could not read.
 
@@ -72,13 +83,13 @@ You can also read the `.md` files with a text editor.
 
 ## 5. Add older history
 
-When you are happy with the trial, copy this request:
+When you are happy with the test, copy this request:
 
-> I approve the trial. Add the last three months. Show the dates and wait for my approval before you start.
+> I approve the test. Add the last three months. Show the dates and wait for my approval before you start.
 
 Change "three months" to the period you want.
 The agent will work in small batches and save its progress.
-Do not add years of history before checking the trial.
+Do not add years of history before checking the test.
 
 ## 6. Continue on another day
 

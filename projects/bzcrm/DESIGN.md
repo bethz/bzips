@@ -1,7 +1,7 @@
 # bzCRM design
 
 **Status:** Packaging design with two draft skills. Live imports and agent-specific access need testing.
-**Version:** 0.7
+**Version:** 0.9
 **Updated:** November 8, 2026
 
 This document defines how to adapt the existing private CRM for friends. Reading it does not install skills or start an import.
@@ -20,7 +20,7 @@ Write the user guide for people who are not technical. Assume Work IQ is already
 
 Adapt the current BZCOWCRM workflow. Publish two core skills, a starter Obsidian vault, prompts, templates, setup instructions, and fictional examples in BZiPS.
 
-- `bzcrm-ingest` reads selected sources, updates notes, applies corrections, and saves progress. Trial, older history, weekly updates, manual additions, and resume are its modes.
+- `bzcrm-ingest` reads selected sources, updates notes, applies corrections, and saves progress. Quick test, older history, weekly updates, manual additions, and resume are its modes.
 - `bzcrm-query` reads saved notes and answers questions with evidence. It covers briefings, collaborators, follow-ups, relationship history, and draft project and career histories.
 
 A separate `bzcrm-history` skill is optional if histories later need their own format and review workflow. Do not require a separate skill for every prompt. Keep record formats and evidence rules shared.
@@ -41,7 +41,7 @@ Manual import, CSV export, and vCard export are later options. Do not silently r
 
 ## Sources and scope
 
-The recommended trial reads sent and received Outlook email and selected Teams activity. Ask the user to confirm both sources. Support an Outlook-only trial if that is what the user chooses. Never add Teams to an email-only request.
+The recommended quick test reads sent and received Outlook email and selected Teams activity. Ask the user to confirm both sources. Support an Outlook-only test if that is what the user chooses. Never add Teams to an email-only request.
 
 Before reading data, confirm:
 
@@ -86,25 +86,34 @@ Any index must be rebuildable from the notes. Store no unique information only i
 
 "Import" means reading selected sources and saving linked notes. It does not mean copying every message.
 
-### 1. Quick trial using existing history
+### 1. Quick test to check connections
 
 Check source access and note saving by importing the past seven complete days.
+Check that the saved notes and date log can be reopened.
 The week describes the history range, not the run duration.
 Process existing activity after the access checks. Do not wait for a new week of activity.
 
 1. Use the last seven complete days in the user's timezone. Exclude the current incomplete day. State exact dates and timestamp boundaries first.
 2. Check existing coverage. Log the attempt before reading data.
-3. Read the selected Outlook and Teams sources in small batches. Stay within the trial dates.
+3. Read the selected Outlook and Teams sources in small batches. Stay within the test dates.
 4. Create or update linked notes. Save a home page and review page.
 5. Verify each saved batch. Log its result and save the next position before continuing.
 6. Save a review of people, projects, sample profiles, missing details, possible duplicates, source coverage, errors, and remaining work.
-7. **Stop for corrections and explicit approval.** Saving or summarizing the trial is not approval to add older history.
+7. **Stop for corrections and explicit approval.** Saving or summarizing the test is not approval to add older history.
 
-A trial can use several batches. Save progress after each verified batch, not only at the end.
+A test can use several batches. Save progress after each verified batch, not only at the end.
+
+After saving the quick test, give the user a copy-ready Ask request:
+
+> Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+
+Ask must use only the saved test evidence. Show gaps and fewer results when needed.
+The user can check the note links before approving older history.
+Do not run the question automatically or treat it as import approval.
 
 ### 2. Add older history
 
-Start only after trial approval. Ask for a date range or duration. Convert it to exact dates and confirm the timezone. For a duration, state the date it is measured from.
+Start only after test approval. Ask for a date range or duration. Convert it to exact dates and confirm the timezone. For a duration, state the date it is measured from.
 
 Work backward one calendar month at a time. Split busy months into weeks or smaller batches. Handle leap years and partial months. Keep every batch within the requested dates.
 
@@ -120,9 +129,9 @@ Keep partial windows visible even if another window is processed. Long imports m
 
 ### 3. Keep it current
 
-Run updates when the user asks. State the exact dates and selected sources. Compare them with saved coverage and expose any unprocessed activity since the trial or last update.
+Run updates when the user asks. State the exact dates and selected sources. Compare them with saved coverage and expose any unprocessed activity since the test or last update.
 
-Show new people, changed details, project links, explicit follow-ups, and questions for review. Use the same save, evidence, identity, and recovery rules as the trial.
+Show new people, changed details, project links, explicit follow-ups, and questions for review. Use the same save, evidence, identity, and recovery rules as the test.
 
 Do not send messages or create schedules without an explicit request. "Weekly" is a suggested cadence, not an automatic job.
 
@@ -248,8 +257,9 @@ Reuse and verify the existing capture and coverage approach. Choose batch sizes,
 
 ## Required tests
 
-- Trial stays within seven complete days and selected sources, with valid notes and links.
-- Trial saves its review and stops. Older history requires explicit approval.
+- The quick test stays within seven complete days and selected sources, with valid notes and links.
+- The quick test saves its review and stops. Older history requires explicit approval.
+- Import offers the saved-data question after the quick test. Ask uses only that test's evidence and invents no missing results.
 - Imports handle month boundaries, leap years, overlaps, and retries without duplicates.
 - An interrupted save resumes without losing corrections or counting work twice.
 - Older evidence preserves current details and the latest interaction date.
@@ -269,6 +279,8 @@ Live coverage, resume behavior, and access in Teams Copilot, Claude, or other ag
 
 ## Version history
 
+- **0.9, November 8, 2026:** Added a saved-data question after the quick test so users can check people, shared work, follow-ups, and note links.
+- **0.8, November 8, 2026:** Renamed the first-use trial to a quick test. Clarified that it checks source access, note saving, and the saved date log.
 - **0.7, November 8, 2026:** Clarified that the quick trial reads one week of existing Outlook and Teams history. It does not run for a week.
 - **0.6, November 8, 2026:** Added draft Import and Ask skills, basic setup, agent access checks, a permanent date log, and the "since the last time we ran" prompt.
 - **0.5, November 8, 2026:** Set nontechnical users with Work IQ already connected as the audience. Simplified first-use steps and prompts. Required a step-by-step install guide and a nontechnical peer trial.

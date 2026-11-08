@@ -28,21 +28,23 @@
       <a class="button" href="https://github.com/bethz/bzips/blob/main/projects/bzcrm/SETUP.md">Start bzCRM</a>
     </section>
     <section class="section" aria-labelledby="setup-heading">
-      <h2 id="setup-heading">Run a quick trial using existing history</h2>
+      <h2 id="setup-heading">Run a quick test to check connections</h2>
       <p>Work IQ is already set up. Use an agent that can read your selected sources and save your notes. The instructions work as skill files or text you provide; they do not add missing access.</p>
       <p>Follow the setup guide, then:</p>
       <ol>
-        <li>Copy this request: &ldquo;Run a quick bzCRM trial. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.&rdquo;</li>
+        <li>Copy this request: &ldquo;Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.&rdquo;</li>
         <li>Answer its questions about your mailbox, Teams activity, timezone, and notes folder.</li>
-        <li>Check a few people and projects you know. Tell it what to correct.</li>
-        <li>When you are happy with the trial, approve it and ask to add older history.</li>
+        <li>Try your saved data: &ldquo;Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.&rdquo;</li>
+        <li>Check the answer and open the note links. Tell it what to correct.</li>
+        <li>When you are happy with the test, approve it and ask to add older history.</li>
         <li>Ask: &ldquo;Can you ingest for bzCRM since the last time we ran?&rdquo;</li>
       </ol>
-      <p>The trial checks source access and note saving with one week of existing history. It does not run for a week. Some information may be missing; bzCRM must tell you what it could not read. Your notes stay in your own folder, not in the public project.</p>
+      <p>The saved-data question shows what the notes can tell you, beyond names and email addresses. Missing details must stay missing, not become guesses.</p>
+      <p>The quick test checks source access, note saving, and the saved date log with one week of existing history. It does not run for a week. Some information may be missing; bzCRM must tell you what it could not read. Your notes stay in your own folder, not in the public project.</p>
     </section>
     <section class="section" aria-labelledby="package-heading">
       <h2 id="package-heading">Prompts and skills</h2>
-      <p>The README lists draft prompts for the trial, corrections, older history, resume, updates, manual additions, conversation preparation, collaborators, follow-ups, and project and career histories.</p>
+      <p>The README lists draft prompts for the quick test, corrections, older history, resume, updates, manual additions, conversation preparation, collaborators, follow-ups, and project and career histories.</p>
       <p>A prompt is a request you type or paste. A skill is a set of instructions your assistant follows.</p>
       <p><a href="https://github.com/bethz/bzips/blob/main/projects/bzcrm/skills/bzcrm-ingest/SKILL.md">Import (bzcrm-ingest)</a> reads selected sources and saves notes, a date log, and progress. <a href="https://github.com/bethz/bzips/blob/main/projects/bzcrm/skills/bzcrm-query/SKILL.md">Ask (bzcrm-query)</a> answers questions from saved notes, including which dates were processed.</p>
       <p>Import keeps its date log in your notes folder. Ask: &ldquo;What dates have we ingested for bzCRM?&rdquo; Incomplete ranges stay visible.</p>

@@ -128,6 +128,25 @@ Separate a named participant from a verified contributor.
 For broad searches, state the evidence period and folder coverage.
 Do not call results a complete network unless evidence supports that claim.
 
+## Try the saved quick-test data
+
+Example request:
+
+> Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+
+Read the review, date log, and checkpoint to identify the quick test's dates and saved notes.
+Use only evidence captured for that test.
+Do not add unrelated history from an existing person profile.
+Do not retrieve new Outlook or Teams activity.
+
+Show a short table with person, shared work, explicit follow-ups, and supporting note links.
+Return fewer than three people when the evidence supports fewer.
+State missing details instead of guessing.
+If no supported collaborators appear in the saved test notes, explain that result and any source gaps.
+If you cannot identify the test window, ask the user which saved period to use.
+
+The question checks the saved output. It does not approve a larger import.
+
 ## Follow-ups and reconnections
 
 Show explicit commitments with their source, owner, date, and recorded status.
