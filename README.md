@@ -10,9 +10,9 @@ BZiPS is a public library of prompts, skills, templates, and guides. Each projec
 
 | Project | Purpose | Status |
 |---|---|---|
-| [bzCRM](projects/bzcrm/) | Linked notes from Outlook and Teams about people, shared projects, and follow-ups | Coming soon |
+| [bzCRM](projects/bzcrm/) | Linked notes from Outlook and Teams about people, shared projects, and follow-ups | Draft |
 
-The repository contains project plans and draft prompt text. No installable skills or tested workflows are available yet.
+The repository contains two draft bzCRM skills, prompts, and a setup guide. Live imports and agent-specific access still need testing.
 
 ## What each project will include
 

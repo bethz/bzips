@@ -2,7 +2,7 @@
 
 bzCRM packages BZCOWCRM's existing personal CRM workflow for friends. It turns Outlook email and selected Teams activity into linked notes about people, shared projects, and follow-ups.
 
-**Status: Public package not released.** BZCOWCRM already runs privately. Installable bzCRM skills, a starter vault, and verified setup instructions are not available yet. The prompts below are drafts for that shared package.
+**Status: Draft skills available.** BZCOWCRM already runs privately. The shared Import and Ask instructions are ready to try. Live imports and each agent's access still need testing.
 
 ## More than a contact list
 
@@ -14,66 +14,86 @@ bzCRM packages BZCOWCRM's existing personal CRM workflow for friends. It turns O
 
 ## Simple setup
 
-The first release is planned for GitHub Copilot CLI with Work IQ already connected and a local Obsidian vault. Installation steps still need to be verified.
+**Work IQ is already set up. You do not need to set it up again.**
 
-1. **Choose your sources and folder.** Confirm your mailbox, Outlook and Teams access, timezone, and where to save the notes. Choose professional contacts only or include personal contacts.
-2. **Try one week.** Read the last seven complete days of sent and received Outlook email and the Teams activity you select. Save linked notes and a review page. Stop.
-3. **Check the results.** Open the notes in Obsidian. Check names, shared projects, source links, and follow-ups. Correct mistakes and review missing source data.
-4. **Add older history.** When you approve the trial, choose an exact date range. Read older activity one calendar month at a time. Split busy months into smaller batches.
-5. **Keep it current.** Request an update each week. Ask questions about people and projects at any time after notes are saved.
+You may use Copilot, Teams Copilot, Claude, or another agent with the needed access. The agent must read your chosen sources and save files. The skills do not add missing access.
 
-Start small. Do not import years of history until the one-week trial gives you useful results.
+Follow [Start bzCRM](SETUP.md) to add the instructions and check access. You will not need to edit code. Obsidian is an optional app for reading the notes. Its "vault" is just your notes folder.
+
+**After installation, start here:**
+
+1. **Copy this request into your assistant:**
+
+   > Start my bzCRM with one week of Outlook and Teams. Ask me where to save the notes. Stop when the trial is ready for me to check.
+
+2. **Answer its questions.** It will ask which mailbox and Teams activity to use, your timezone, and where to save the notes. Choose work contacts only, unless you also want personal contacts. It will show the dates before it starts.
+3. **Check a few people you know.** Ask it to show the trial results. Are the names right? Are the shared projects right? Tell it what to correct. It will also show information it could not read.
+4. **Add more when you are happy with the trial.** For example: "I approve the trial. Add the last three months. Confirm the dates before you start."
+5. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
+
+The trial reads only the last seven complete days. It stops for your review before adding older history.
 
 ## What prompts are included?
 
-These are **draft requests**, not commands for released bzCRM skills. The skills will contain the detailed rules for each request.
+These are requests for the **draft skills**. A prompt is simply a request you type or paste into your assistant. Replace words in brackets with your own names or dates.
 
 | Task | Skill | Draft prompt |
 |---|---|---|
-| Try one week | Ingest | "Start a bzCRM trial from Outlook and Teams. Confirm my sources, timezone, and vault folder. Read only the last seven complete days. Save the notes, review page, and progress. Stop for my review." |
-| Review the trial | Ingest | "Show the trial results, possible duplicates, missing details, and source gaps. Apply my corrections. Do not add older history yet." |
-| Add older history | Ingest | "I approve the trial. Add Outlook and Teams history from [start date] to [end date]. Confirm the dates and selected sources before you start." |
-| Resume | Ingest | "Resume bzCRM from the last verified save. Check unfinished work against the saved notes first." |
-| Update | Ingest | "Update bzCRM from my selected Outlook and Teams sources for [start date] to [end date]. Show changes, follow-ups, and gaps." |
-| Add a collaborator | Ingest | "Add [person] and our work on [project] from this note. Keep the source and flag missing details." |
-| Prepare for a conversation | Query | "Who is [person], how do I know them, and what have we worked on? Include open follow-ups and source links." |
-| Find a collaborator | Query | "Who have I worked with on [topic or project]? Show their documented contributions and when we last interacted in the reviewed sources." |
-| Review follow-ups | Query | "What follow-ups are open? Which contacts I marked high priority may need a reconnection? Show source dates and coverage gaps." |
-| Trace a project | Query | "Show [project]'s decisions, milestones, changes, contributors, and outcomes. Cite the evidence and show gaps." |
-| Review career history | Query | "Show how my work developed across roles, projects, skills, and contributions. Use dated evidence. Do not invent achievements." |
+| Try one week | Import | "Start my bzCRM with one week of Outlook and Teams. Stop for my review." |
+| Review the trial | Import | "Show the trial results and anything missing. Apply my corrections." |
+| Add older history | Import | "I approve the trial. Add the last three months. Confirm the dates before you start." |
+| Continue after a stop | Import | "Continue the unfinished import from where you stopped." |
+| Update | Import | "Can you ingest for bzCRM since the last time we ran?" |
+| Check processed dates | Ask | "What dates have we ingested for bzCRM?" |
+| Add someone | Import | "Add [person] and our work on [project] from this note." |
+| Prepare for a conversation | Ask | "Who is [person], how do I know them, and what should I know before we talk?" |
+| Find someone | Ask | "Who worked with me on [topic or project], and what did they do?" |
+| Review follow-ups | Ask | "What follow-ups are open? Who have I marked as important to keep in touch with?" |
+| Show a project's history | Ask | "Show what happened on [project], who contributed, and the results. Include sources." |
+| Show career history | Ask | "Show how my work developed across roles and projects. Include dated examples." |
 
 ## What skills are included?
 
-**No public bzCRM skills are released yet.** The recommended package has two core skills:
+Two **draft skills** are available. A skill is a set of instructions that tells your assistant how to do a job.
 
-| Proposed skill | Purpose |
+| Skill | Purpose |
 |---|---|
-| **`bzcrm-ingest`** | Read selected sources, create and update notes, apply corrections, and save progress. Trial, older history, weekly updates, and resume are modes of this skill. |
-| **`bzcrm-query`** | Answer questions from saved notes, prepare briefings, find collaborators, and show follow-ups and histories with evidence. |
+| **[Import: `bzcrm-ingest`](skills/bzcrm-ingest/SKILL.md)** | Read the Outlook and Teams activity you choose. Save notes, corrections, a date log, and progress. Continue after an interruption. |
+| **[Ask: `bzcrm-query`](skills/bzcrm-query/SKILL.md)** | Answer from saved notes. Find people, explain shared work, show follow-ups and history, and report processed dates. |
 
 Project and career histories start as query prompts. A separate `bzcrm-history` skill is optional later, not required to get started.
 
-The release will also include a starter vault, note templates, setup instructions, and fictional examples. See the [build plan](ROADMAP.md) for what remains.
+Import contains instructions to create the notes folder and templates. Both skills are single files. See the [setup guide](SETUP.md) and [build plan](ROADMAP.md).
 
 ## Where does the information go?
 
 Your data is saved as plain-text Markdown files (`.md`) in a folder on your hard drive, outside this public repository. You can read and edit them in any text editor, or copy them to another computer. This keeps the data simple and portable, without requiring bzCRM or a database to read it.
 
+This requires an agent with access to that folder. A cloud agent may use a different location. Check the save destination first.
+
 Links such as `[[Alex Example]]` and `[[Example Project]]` connect related notes. In Obsidian, these `[[wikilinks]]` let you follow connections between people, projects, meetings, and interactions. Together, the linked notes form a knowledge graph: a record of both the information and how it connects.
 
 The vault will contain people, organizations, projects, meetings, interactions, and review pages. An optional local search index can be rebuilt from those notes. It will not be the only copy of your information.
 
+## What dates did it read?
+
+Import creates and maintains `00-Dashboard/ingestion-log.md` in your notes folder. It records each date range and source. It marks incomplete work as partial or blocked.
+
+Ask: "What dates have we ingested for bzCRM?" To continue, ask: "Can you ingest for bzCRM since the last time we ran?"
+
+The agent checks the saved log and progress before continuing. A saved note does not mean that every message in that period was read.
+
 ## What should I know before using it?
 
-- **Source access can be incomplete.** Work IQ permissions, retention, and retrieval limits affect what bzCRM can read. It must show gaps, not claim to have read every message.
-- **Answers need evidence.** A name on a CC list does not prove a relationship, contribution, or project role.
+- **Some information may be missing.** Work IQ may not be able to read everything. bzCRM must tell you what is missing.
+- **Check important details.** Answers should link to the notes or messages they came from. Being copied on an email does not prove someone worked on a project.
 - **Your corrections stay.** New imports must preserve your edits. Older records must not replace newer details.
 - **Updates are on request.** bzCRM will not send messages or create a schedule unless you ask.
 - **Exports are a later option.** CSV and vCard are proposed, not delivered. Retain or export only information you are allowed to keep.
 
 ## More detail
 
-[Design and requirements](DESIGN.md) | [Build plan](ROADMAP.md) | [Website](https://bethz.github.io/bzips/projects/bzcrm/)
+[Setup](SETUP.md) | [Design and requirements](DESIGN.md) | [Build plan](ROADMAP.md) | [Website](https://bethz.github.io/bzips/projects/bzcrm/)
 
 Feedback and pull requests are welcome. See the [contribution guide](../../CONTRIBUTING.md) and [MIT license](../../LICENSE).
 

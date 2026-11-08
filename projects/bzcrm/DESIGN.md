@@ -1,7 +1,7 @@
 # bzCRM design
 
-**Status:** Packaging design. BZCOWCRM runs privately; the public bzCRM package is not released.
-**Version:** 0.4
+**Status:** Packaging design with two draft skills. Live imports and agent-specific access need testing.
+**Version:** 0.6
 **Updated:** November 8, 2026
 
 This document defines how to adapt the existing private CRM for friends. Reading it does not install skills or start an import.
@@ -16,6 +16,8 @@ Support everyday relationship management. Job-change preparation is optional. Be
 
 ## Package and supported setup
 
+Write the user guide for people who are not technical. Assume Work IQ is already connected. Use short numbered steps, exact copy-and-paste requests, and verified clicks or commands. Show the expected result and what to do if it does not appear. Explain terms such as prompt, skill, and vault. Do not require users to edit code or repeat Work IQ setup.
+
 Adapt the current BZCOWCRM workflow. Publish two core skills, a starter Obsidian vault, prompts, templates, setup instructions, and fictional examples in BZiPS.
 
 - `bzcrm-ingest` reads selected sources, updates notes, applies corrections, and saves progress. Trial, older history, weekly updates, manual additions, and resume are its modes.
@@ -25,7 +27,13 @@ A separate `bzcrm-history` skill is optional if histories later need their own f
 
 Label each part as draft or tested. Record the version, test date, supported tools, and known limits. Private use does not by itself verify installation on a friend's setup.
 
-The first planned setup is GitHub Copilot CLI, an existing Work IQ connection, and local vault access. Verify installation and compatibility before release. Do not claim support for other assistants without checking their source and file access.
+The skills use agent-neutral Markdown instructions. Users may use Copilot, Teams Copilot, Claude, or another agent. Assume Work IQ is already connected.
+
+Check the chosen agent's source access, file tools, and persistent save destination before import. Existing Work IQ access does not prove that an agent exposes every source. Skill files do not add missing tools.
+
+Do not start an automated import without persistent file access. Do not describe a cloud workspace as the user's hard drive. Ask can answer from user-supplied notes, but must state that limited scope.
+
+The setup guide includes a Copilot CLI install route based on GitHub's documented commands. Other agents may use native skill setup, attached files, or pasted instructions. Verify each route before labeling it tested.
 
 Users' account permissions and retention policies control access. Keep their populated vaults, private messages, credentials, and project records outside the public repository. Share only the tool and fictional examples.
 
@@ -174,7 +182,9 @@ With incomplete coverage, say "no interaction found in reviewed sources," not "n
 
 ## Logs and recovery
 
-Keep an append-only import log in `00-Dashboard/`. Track source coverage separately from successful saves.
+Keep an append-only `00-Dashboard/ingestion-log.md` for date windows and source coverage. Keep `capture-log.md` for successful saves and `checkpoint.md` for the next position. Store all three in the private notes folder.
+
+For "Can you ingest for bzCRM since the last time we ran?", read these files first. Check unfinished batches before newer activity. Preserve partial windows and ask for a start date if no usable log exists.
 
 Write a **started** entry before retrieval. After each verified save, record progress. Include partial batches, manual captures, retries, and corrections.
 
@@ -244,8 +254,19 @@ Reuse and verify the existing capture and coverage approach. Choose batch sizes,
 - Partial retrieval never becomes a claim of complete history.
 - Updates expose unprocessed gaps and do not send messages or create schedules.
 
+## Package checks
+
+On November 8, 2026, Copilot CLI 1.0.107 installed and discovered both skill files in an isolated project.
+The skill files and setup guide passed the structural STE check.
+Local documentation links and website structure passed checks.
+
+These checks did not read a live mailbox or run an import.
+Live coverage, resume behavior, and access in Teams Copilot, Claude, or other agents still need testing.
+
 ## Version history
 
+- **0.6, November 8, 2026:** Added draft Import and Ask skills, basic setup, agent access checks, a permanent date log, and the "since the last time we ran" prompt.
+- **0.5, November 8, 2026:** Set nontechnical users with Work IQ already connected as the audience. Simplified first-use steps and prompts. Required a step-by-step install guide and a nontechnical peer trial.
 - **0.4, November 8, 2026:** Reframed the work as packaging the running BZCOWCRM for friends. Recommended ingest and query skills, with histories as query prompts initially. Made indexing optional and added manual-capture and follow-up prompts.
 - **0.3, November 8, 2026:** Shortened the language and linked the draft prompt inventory. Made Outlook and user-selected Teams the recommended trial. Kept email-only scope, the review stop, and coverage and recovery requirements.
 - **0.2, November 6, 2026:** Added the seven-complete-day email trial, saved review and approval stop, calendar-month history import, on-request weekly updates, and coverage-aware completion.

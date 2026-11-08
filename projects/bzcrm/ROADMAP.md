@@ -1,25 +1,27 @@
 # bzCRM: package the working CRM
 
-**Status:** BZCOWCRM already runs privately. The public bzCRM package is not released.
+**Status:** Two draft skills and a setup guide are available. Live imports and agent-specific access need testing.
 **Updated:** November 8, 2026
 
 The goal is to share the existing CRM workflow with friends, not build a new CRM from scratch.
 
+**Audience:** People who are not technical and already have Work IQ connected. The user guide must show one action at a time, what to copy or click, and what they should see next. Explain unfamiliar words. Do not require code edits or repeat Work IQ setup.
+
 ## Four steps to share it
 
-1. **Adapt BZCOWCRM.** Reuse its workflow and empty templates. Replace personal paths and accounts with user choices. Keep private records out.
-2. **Package two skills.** Add ingest and query skills, shared note rules, a starter vault, and a short install guide.
-3. **Try it with one friend.** Use a verified Copilot CLI and Work IQ setup. Read one week of selected Outlook and Teams activity. Stop for review. Check queries, corrections, gaps, duplicates, and interrupted-run recovery before adding older history.
-4. **Publish.** Include prompts and tested setup instructions. State what remains incomplete.
+1. **Draft skills: done.** Import and Ask reuse the private CRM's rules. No private records are included.
+2. **Basic guide: available.** Check it with each supported agent. Confirm source access and a persistent save destination.
+3. **Try it with one nontechnical friend.** Use their existing Work IQ connection. Read one week and stop for review. Check queries, corrections, date logs, gaps, duplicates, and interrupted-run recovery.
+4. **Label tested parts.** Test longer imports and history outputs. Record the agent, test date, and remaining limits.
 
 ## Which skills are needed?
 
-These are proposed public skill names, not files already released.
+These instruction files are available as drafts.
 
 | Skill | Job |
 |---|---|
-| **`bzcrm-ingest`** | Read Outlook and Teams. Create or update notes. Handle trial, older history, updates, manual additions, corrections, and resume. Show progress and gaps. |
-| **`bzcrm-query`** | Answer from saved notes. Find people, shared work, contributions, and follow-ups. Prepare briefings and histories with sources. |
+| **[bzcrm-ingest](skills/bzcrm-ingest/SKILL.md)** | Read Outlook and Teams. Save notes, a permanent date log, and progress. Handle trial, older history, updates, corrections, and resume. |
+| **[bzcrm-query](skills/bzcrm-query/SKILL.md)** | Answer from saved notes. Find people, shared work, follow-ups, histories, and processed dates. |
 
 **Project and career histories start as query prompts.** A separate `bzcrm-history` skill is optional later.
 
@@ -32,7 +34,8 @@ Setup, updates, resume, duplicate checks, and index rebuilding do not need separ
 | Ingest | "Run the one-week Outlook and Teams trial. Stop for review." |
 | Ingest | "Review the trial and apply my corrections." |
 | Ingest | "I approve the trial. Add history from [start] to [end]." |
-| Ingest | "Update my CRM from [start] to [end]." |
+| Ingest | "Can you ingest for bzCRM since the last time we ran?" |
+| Query | "What dates have we ingested for bzCRM?" |
 | Ingest | "Resume the unfinished import." |
 | Ingest | "Add [person] and our work on [project] from this note." |
 | Query | "Brief me on [person] before we talk." |
@@ -41,7 +44,7 @@ Setup, updates, resume, duplicate checks, and index rebuilding do not need separ
 | Query | "Show the history of [project], with sources." |
 | Query | "Show my career history from dated evidence." |
 
-The [README](README.md#what-prompts-are-included) has fuller prompts. Detailed rules belong in the skills.
+The [README](README.md#what-prompts-are-included) has user-facing prompts. Detailed rules belong in the skills.
 
 ## What to reuse from BZCOWCRM
 
@@ -55,5 +58,7 @@ The SQLite helper indexes people, not full histories. It is optional. Start quer
 ## First release boundary
 
 Start with two skills and a one-week trial. Longer imports need approval. Test history outputs before labeling them tested. Keep source gaps visible; updates run on request.
+
+The files are agent-neutral instructions. They do not add connectors or local file access. Use the [setup guide](SETUP.md) to check the chosen agent.
 
 Use [GitHub Pages](https://bethz.github.io/bzips/). Certificate repair is a separate website task.
