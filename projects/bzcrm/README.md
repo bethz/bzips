@@ -18,26 +18,71 @@ You may use Copilot, Teams Copilot, Claude, or another agent with the needed acc
 
 ## Start here 
 
-Follow [Start bzCRM](SETUP.md) to follow the instructions and check access. You will not need to edit code. The data is stored in plain txt files you can read and configured as part of a knowledge graph. Its "vault" is just your notes folder.
+You do not need to edit code. A "vault" is just your notes folder.
 
-**After installation, start here:**
+### 1. Add the two skill files to your AI app
 
-1. **Copy this request into your AI assistant:**
+Open these files:
 
-   > Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
+- [Import skill (`bzcrm-ingest`)](skills/bzcrm-ingest/SKILL.md)
+- [Ask skill (`bzcrm-query`)](skills/bzcrm-query/SKILL.md)
 
-2. **Answer its questions.** It will ask which mailbox and Teams activity to use, your timezone, and where to save the notes. Choose work contacts only, unless you also want personal contacts. It will show the dates before it starts.
-   
-3. **Try your saved data.** Copy this request:
+Then do one of these:
 
-   > Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+1. If your app supports skills, add both files as skills.
+2. If your app does not support skills, copy/paste each file into your chat before you run bzCRM.
+3. If your app supports attachments, attach both `SKILL.md` files.
 
-5. **Check the answer.** Are the names and shared projects right? Open the note links. Tell it what to correct. Fewer than three people is fine if the saved data supports fewer.
-   
-7. **Add more when you are happy with the test.** For example: "I approve the test. Add the last three months. Confirm the dates before you start."
-8. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
+Simple instruction you can paste:
 
-The quick test checks your selected sources and ability to save and reopen notes and the date log. It uses one week of existing history, not a week of running time. It stops for your review before adding older history.
+> Create two skills from these two files: `bzcrm-ingest` and `bzcrm-query`. Use them for all bzCRM requests in this chat.
+
+### 2. Check access before importing
+
+Copy this request:
+
+> Use the bzCRM Import instructions. Do not import yet. Can you read my Outlook and Teams activity? Can you save and reopen notes and a date log in my own folder?
+
+The agent must confirm both source access and file-save access.  
+If it cannot save files, do not start the import.
+
+### 3. Run the quick test (7 complete days)
+
+Copy this request:
+
+> Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
+
+Answer its setup questions (mailbox, Teams scope, timezone, and notes folder).
+
+### 4. Review the saved results
+
+Copy this request:
+
+> Show the test results and anything missing.
+
+Then run the Ask check:
+
+> Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
+
+Check names, projects, and links. Tell the agent what to fix.
+
+### 5. Add older history after you approve the test
+
+Copy this request:
+
+> I approve the test. Add the last three months. Show the dates and wait for my approval before you start.
+
+### 6. Keep it updated later
+
+Copy this request:
+
+> Can you ingest for bzCRM since the last time we ran?
+
+To check date coverage:
+
+> What dates have we ingested for bzCRM?
+
+The log is saved in `00-Dashboard/ingestion-log.md`.
 
 ## What prompts are included?
 
