@@ -1,8 +1,8 @@
 # bzCRM
 
-bzCRM packages BZCOWCRM's existing personal CRM workflow for friends. It turns Outlook email and selected Teams activity into linked notes about people, shared projects, and follow-ups.
+bzCRM packages BZCOWCRM's existing personal CRM workflow for coworkers and friends. It does more than just capture the contact info, it uses AI to turn Outlook email and selected Teams activity into linked notes about people, shared projects, and follow-ups. 
 
-**Status: Draft skills available.** BZCOWCRM already runs privately. The shared Import and Ask instructions are ready to try. Live imports and each agent's access still need testing.
+**Status: Draft skills available.** The shared Import and Ask instructions are ready to try. Live imports and each agent's access still need testing.
 
 ## More than a contact list
 
@@ -14,26 +14,28 @@ bzCRM packages BZCOWCRM's existing personal CRM workflow for friends. It turns O
 
 ## Simple setup
 
-**Work IQ is already set up. You do not need to set it up again.**
+You may use Copilot, Teams Copilot, Claude, or another agent with the needed access to Outlook and/or Teams. The agent must be able to read your chosen sources and save files on your local storage (laptop, etc). The skills do not add missing access, you will need to fix those.
 
-You may use Copilot, Teams Copilot, Claude, or another agent with the needed access. The agent must read your chosen sources and save files. The skills do not add missing access.
+## Start here 
 
-Follow [Start bzCRM](SETUP.md) to add the instructions and check access. You will not need to edit code. Obsidian is an optional app for reading the notes. Its "vault" is just your notes folder.
+Follow [Start bzCRM](SETUP.md) to follow the instructions and check access. You will not need to edit code. The data is stored in plain txt files you can read and configured as part of a knowledge graph. Its "vault" is just your notes folder.
 
 **After installation, start here:**
 
-1. **Copy this request into your assistant:**
+1. **Copy this request into your AI assistant:**
 
    > Run a quick bzCRM test to check that everything needed is connected. Read the past seven complete days of Outlook and Teams activity. Save the notes and show the results for my review.
 
 2. **Answer its questions.** It will ask which mailbox and Teams activity to use, your timezone, and where to save the notes. Choose work contacts only, unless you also want personal contacts. It will show the dates before it starts.
+   
 3. **Try your saved data.** Copy this request:
 
    > Use my bzCRM notes from the quick test. Show up to three people I worked with, what we worked on, and any open follow-ups. Link to the notes.
 
-4. **Check the answer.** Are the names and shared projects right? Open the note links. Tell it what to correct. Fewer than three people is fine if the saved data supports fewer.
-5. **Add more when you are happy with the test.** For example: "I approve the test. Add the last three months. Confirm the dates before you start."
-6. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
+5. **Check the answer.** Are the names and shared projects right? Open the note links. Tell it what to correct. Fewer than three people is fine if the saved data supports fewer.
+   
+7. **Add more when you are happy with the test.** For example: "I approve the test. Add the last three months. Confirm the dates before you start."
+8. **Keep it up to date.** Ask: "Can you ingest for bzCRM since the last time we ran?" It will read the saved log first. You can also ask about a person or project.
 
 The quick test checks your selected sources and ability to save and reopen notes and the date log. It uses one week of existing history, not a week of running time. It stops for your review before adding older history.
 
@@ -69,6 +71,8 @@ Two **draft skills** are available. A skill is a set of instructions that tells 
 Project and career histories start as query prompts. A separate `bzcrm-history` skill is optional later, not required to get started.
 
 Import contains instructions to create the notes folder and templates. Both skills are single files. See the [setup guide](SETUP.md) and [build plan](ROADMAP.md).
+
+## All the Details you do NOT need to know unless interested
 
 ## Where does the information go?
 
